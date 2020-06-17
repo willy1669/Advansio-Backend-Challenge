@@ -2,7 +2,7 @@ import Joi from '@hapi/joi';
 import joiFormatter from '../helpers/joi-formatter.js';
 import { userService } from '../services/userService.js';
 
-/**  registration field vlaidator*/
+/**  registration field vlaidator */
 const registerValidation = async (req, res, next) => {
   const { body } = req;
   const { email } = body;
