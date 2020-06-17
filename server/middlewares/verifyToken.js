@@ -1,4 +1,7 @@
+
+import validations from '../helpers/validations.js';
 import validations from '../helpers/validations';
+
 
 /**
  * @method verifyToken

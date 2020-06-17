@@ -1,7 +1,7 @@
-import trimmerMiddleware from './trimmer.middlewares';
-import loginMiddleware from './login';
-import registerMiddleware from './register';
-import verifyToken from './verifyToken';
+import trimmerMiddleware from './trimmer.middlewares.js';
+import loginMiddleware from './login.js';
+import registerMiddleware from './register.js';
+import verifyToken from './verifyToken.js';
 
 export default {
   trimmerMiddleware,
