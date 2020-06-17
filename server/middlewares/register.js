@@ -3,6 +3,7 @@ import joiFormatter from '../helpers/joi-formatter.js';
 import { userService } from '../services/userService.js';
 
 /**  registration field vlaidator */
+
 const registerValidation = async (req, res, next) => {
   const { body } = req;
   const { email } = body;
@@ -26,11 +27,18 @@ const registerValidation = async (req, res, next) => {
     });
   }
 
+
   //check if user already exist
   const user = await userService.find({ email });
 
   if (user) {
     return res.status(400).send({
+
+  const user = await authService.find({ email });
+
+  if (user) {
+    return res.status(409).send({
+
       status: false,
       error: 'This user already exists',
     });
