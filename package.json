@@ -6,7 +6,6 @@
   },
   "description": "TWITEE - an API for Twitee, a mini and substandard runoff of Twitter",
   "main": "app.js",
-  "type": "module",
   "scripts": {
     "start": "cross-env NODE_ENV=production && npm run build && node dist/server.js",
     "start:dev": "cross-env NODE_ENV=development nodemon server/app.js --exec babel-node",
