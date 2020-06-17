@@ -1,17 +1,17 @@
-import User from '../db/models/user';
+import  { user } from '../db/models/user.js';
 
-import BaseService from './baseService';
+import BaseService from './baseService.js';
 
 /**
- * @class AuthService
+ * @class UserService
  */
-export default class AuthService extends BaseService {
+export default class UserService extends BaseService {
   /**
    * @constructor
    */
   constructor() {
-    super(User);
+    super(user);
   }
 }
 
-export const authService = new AuthService();
+export const userService = new UserService();
