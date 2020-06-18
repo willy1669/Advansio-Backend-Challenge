@@ -23,9 +23,8 @@ export default class UserService extends BaseService {
    * @param {string} password
    * @returns {object} created object
    */
-  async createUser(name, email, password) {
+  async createUser(email, password) {
     const data = User.create({
-      name,
       email,
       password
     });

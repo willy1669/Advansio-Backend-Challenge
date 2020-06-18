@@ -14,14 +14,14 @@ export default class UserController {
    */
   static async register(req, res) {
     const {
-      body: { email, name },
+      body: { email},
     } = req;
 
     let { password } = req.body;
     password = authHelper.hashPassword(password);
 
     //create user and add to database
-    const user = await userService.createUser(name, email, password);
+    const user = await userService.createUser(email, password);
 
     return res.status(200).json({
       status: true,
