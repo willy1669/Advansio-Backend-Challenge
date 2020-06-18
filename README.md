@@ -1,5 +1,4 @@
 # Advansio-Backend-Challenge
-# Heimdall-backend
 
 ## Technologies Used
 
