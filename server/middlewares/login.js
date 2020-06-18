@@ -42,8 +42,6 @@ const user = await User.findOne({ where: { email }});
 
   req.user = user;
 
-  console.log('000', req.user)
-
   return next();
 };
 
