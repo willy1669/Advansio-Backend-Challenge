@@ -14,7 +14,7 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER
       },
-      postId: {
+      commentId: {
         type: Sequelize.INTEGER
       },
       createdAt: {
