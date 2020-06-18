@@ -12,7 +12,7 @@ import app from './app.js';
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || "3000");
+var port = normalizePort(process.env.PORT || "3004");
 app.set("port", port);
 
 /**
