@@ -1,6 +1,7 @@
-import  { user } from '../db/models/user.js';
+import Usermodel from "../db/index";
+import BaseService from "./baseService.js";
 
-import BaseService from './baseService.js';
+const { User } = Usermodel;
 
 /**
  * @class UserService
@@ -9,8 +10,40 @@ export default class UserService extends BaseService {
   /**
    * @constructor
    */
-  constructor() {
-    super(user);
+  constructor(User) {
+    super(User);
+    this.User = User;
+  }
+
+  /**
+   * @method createUser
+   * @description
+   * @param {string} name
+   * @param {string} email
+   * @param {string} password
+   * @returns {object} created object
+   */
+  async createUser(name, email, password) {
+    const data = User.create({
+      name,
+      email,
+      password
+    });
+    return data;
+  }
+
+  /**
+   * @method findOneEmail
+   * @param {object} email
+   * @returns {Array} result
+   */
+  async findOneEmail(email) {
+    const result = User.findOne({
+      where: {
+        email: email,
+      },
+    });
+    return result;
   }
 }
 
