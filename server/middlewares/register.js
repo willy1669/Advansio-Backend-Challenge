@@ -18,7 +18,6 @@ const registerValidation = async (req, res, next) => {
       .email({ minDomainSegments: 2 })
       .required(),
     password: Joi.string().required(),
-    name:  Joi.string().required(),
   });
 
   const { error } = schema.validate(body);
