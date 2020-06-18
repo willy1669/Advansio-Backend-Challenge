@@ -13,7 +13,7 @@ const authHelper = {
    */
   encode: data => {
     const secret = process.env.SECRETKEY;
-    const token = jwt.sign(data, secret, { expiresIn: '72h' });
+    const token = jwt.sign(data, process.env.SECRET, { expiresIn: '72h' });
     return token;
   },
 
@@ -45,7 +45,7 @@ const authHelper = {
    * @returns {token} decode user token
    */
   decode: token => {
-    const isVerified = jwt.verify(token, process.env.SECRETKEY);
+    const isVerified = jwt.verify(token, process.env.SECRET);
     return isVerified;
   },
 };
