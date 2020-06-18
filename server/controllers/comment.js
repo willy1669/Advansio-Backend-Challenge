@@ -1,5 +1,5 @@
-import { commentService } from "../services/CommentService.js";
-import { repliesService } from "../services/RepliesService.js";
+import { commentService } from "../services/commentService.js";
+import { repliesService } from "../services/repliesService.js";
 import Repliesmodel from "../db/index";
 import commentModel from "../db/index";
 
