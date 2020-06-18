@@ -1,11 +1,16 @@
-import Joi from '@hapi/joi';
-import joiFormatter from '../helpers/joi-formatter.js';
-import { userService } from '../services/userService.js';
+import Joi from "@hapi/joi";
+import joiFormatter from "../helpers/joi-formatter.js";
+import { userService } from '../services/userService';
+
+// import Usermodel from '../db/index';
+
+
+// const { User } = Usermodel;
 
 /**  registration field vlaidator */
 const registerValidation = async (req, res, next) => {
   const { body } = req;
-  const { email } = body;
+  const { email, name } = body;
 
   //validate user inputs
   const schema = Joi.object({
@@ -13,6 +18,7 @@ const registerValidation = async (req, res, next) => {
       .email({ minDomainSegments: 2 })
       .required(),
     password: Joi.string().required(),
+    name:  Joi.string().required(),
   });
 
   const { error } = schema.validate(body);
@@ -27,12 +33,12 @@ const registerValidation = async (req, res, next) => {
   }
 
   //check if user already exist
-  const user = await userService.find({ email });
+  const user = userService.findOneEmail(email);
 
-  if (user) {
-    return res.status(400).send({
+  if (!user) {
+    return res.status(400).json({
       status: false,
-      error: 'This user already exists',
+      error: "This user already exists",
     });
   }
 
