@@ -6,7 +6,15 @@ const databaseEnvDetails = {
   username: process.env.DB_CONFIG_USERNAME,
   password: process.env.DB_CONFIG_PASSWORD,
   host: process.env.DB_CONFIG_HOST,
-  dialect: "postgres",
+  dialect: 'postgres',
+  dialectOptions: { 
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+   },
+   keepAlive: true,
+  },
+  ssl: true
 };
 
 const config = {
