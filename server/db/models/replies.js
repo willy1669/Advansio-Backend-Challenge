@@ -1,13 +1,13 @@
 'use strict';
-export const Replies = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const Replies = sequelize.define('Replies', {
     body: DataTypes.STRING,
     userId: DataTypes.INTEGER,
-    postId: DataTypes.INTEGER
+    commentId: DataTypes.INTEGER
   }, {});
   Replies.associate = function(models) {
     // associations can be defined here
-    Reactions.belongsTo(models.Commennt, {
+    Replies.belongsTo(models.Comment, {
       foreignKey: "commentId",
       onDelete: "CASCADE",
     });
