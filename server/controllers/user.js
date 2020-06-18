@@ -1,6 +1,5 @@
-import authHelper from '../helpers/auth.js';
-import { userService } from '../services/userService.js';
-import { createName } from '../helpers/nameFormatter.js';
+import authHelper from "../helpers/auth.js";
+import { userService } from "../services/userService.js";
 
 /**
  * @class UserController
@@ -14,17 +13,19 @@ export default class UserController {
    * @returns {object} registered user
    */
   static async register(req, res) {
-    const { email, password } = req.body;
+    const {
+      body: { email, name },
+    } = req;
 
-    //generate name from email 
-    const name = createName(email);
-    
+    let { password } = req.body;
+    password = authHelper.hashPassword(password);
+
     //create user and add to database
-    const user = await userService.create({ email, password, name });
+    const user = await userService.createUser(name, email, password);
 
     return res.status(200).json({
       status: true,
-      message: 'user created successfully',
+      message: "user created successfully",
       user,
     });
   }
@@ -38,9 +39,12 @@ export default class UserController {
    */
   static async login(req, res) {
     const { password } = req.body;
+
     const {
       user,
-      user: { _id, email, password: hashedPassword },
+      user: {
+        dataValues: { id, email, password: hashedPassword },
+      },
     } = req;
 
     //compare password
@@ -52,16 +56,16 @@ export default class UserController {
     if (!verifiedPassword) {
       return res.status(401).send({
         status: false,
-        error: 'Bad Login',
+        error: "Bad Login",
       });
     }
 
     //create token
-    const token = authHelper.encode({ _id, email });
+    const token = authHelper.encode({ id, email });
 
     return res.status(200).json({
       status: true,
-      message: 'Login successful',
+      message: "Login successful",
       token,
       user,
     });
