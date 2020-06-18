@@ -10,8 +10,10 @@ const {
   userController: { login, register },
 } = controllers;
 
+//register url
 userRoute.post('/register', registerMiddleware, register);
 
+//login url
 userRoute.post('/login', loginMiddleware, login);
 
 export default userRoute;
