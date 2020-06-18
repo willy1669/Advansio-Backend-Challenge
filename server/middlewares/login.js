@@ -1,6 +1,9 @@
 import Joi from '@hapi/joi';
 import joiFormatter from '../helpers/joi-formatter.js';
-import { userService } from '../services/userService.js';
+import Usermodel from '../db/index';
+
+
+const { User } = Usermodel;
 
 /** registration field vlaidator */
 const loginValidation = async (req, res, next) => {
@@ -13,6 +16,7 @@ const loginValidation = async (req, res, next) => {
       .email({ minDomainSegments: 2 })
       .required(),
     password: Joi.string().required(),
+    
   });
 
   const { error } = schema.validate(body);
@@ -26,8 +30,8 @@ const loginValidation = async (req, res, next) => {
     });
   }
 
-  //check if user already exist
-  const user = await userService.find({ email });
+//check if user already exist
+const user = await User.findOne({ where: { email }});
 
   if (!user) {
     return res.status(400).send({
@@ -37,6 +41,8 @@ const loginValidation = async (req, res, next) => {
   }
 
   req.user = user;
+
+  console.log('000', req.user)
 
   return next();
 };
