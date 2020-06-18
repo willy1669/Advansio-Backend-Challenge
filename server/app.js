@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import compression from 'compression';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
+import { Client } from 'pg';
 
 // local imports
 import routes from './routes/index.js';
@@ -43,6 +44,23 @@ app.all('*', (req, res) => {
     error: 'This route does not exist yet!',
   });
 });
+
+
+const client = new Client({
+  connectionString: 'postgres://vsuoyazvrvaaby:5b0ca9fee634c02dfb6145c537145d46ef90a01f56eb5d9a3797ada1c9f88c50@ec2-52-70-15-120.compute-1.amazonaws.com:5432/d6vdi121acnsqb',
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+
+client.connect((err) => {
+  if(err){
+    console.log('Error connecting to Db');
+    return;
+  }
+  console.log('Connection established');
+});
+
 
 
 export default app;
