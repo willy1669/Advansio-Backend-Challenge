@@ -4,8 +4,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import compression from 'compression';
 import helmet from 'helmet';
-import bodyParser from 'body-parser';
-import { Client } from 'pg';
+import bodyParser from 'body-parser';import { Client } from 'pg';
+
 
 // local imports
 import routes from './routes/index.js';
@@ -47,9 +47,10 @@ app.all('*', (req, res) => {
 
 
 const client = new Client({
-  connectionString: 'postgres://vsuoyazvrvaaby:5b0ca9fee634c02dfb6145c537145d46ef90a01f56eb5d9a3797ada1c9f88c50@ec2-52-70-15-120.compute-1.amazonaws.com:5432/d6vdi121acnsqb',
+  connectionString: process.env.DATABASE_URL,
   ssl: {
-    rejectUnauthorized: false
+    rejectUnauthorized: false,
+  
   }
 });
 
