@@ -11,7 +11,7 @@ const {
 } = controllers;
 
 // Comment Routes
-commentRoute.post('/', verifyToken, createComment);
+commentRoute.post('/create', verifyToken, createComment);
 
 commentRoute.get('/', getAllComments);
 
